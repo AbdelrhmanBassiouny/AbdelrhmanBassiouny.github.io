@@ -137,7 +137,7 @@ hr {
 }
 
 abbr {
-  font-size: 50%;
+  font-size: 75%;
   font-weight: bold;
   color: #555;
   text-transform: uppercase;
@@ -335,13 +335,9 @@ tbody tr:nth-child(odd) th {
 }
 
 /* Blog post or page title */
-.page-title a {
-  font-size: 50%
-}
 .page-title,
 .post-title,
 .post-title a {
-  font-size: 75%;
   color: #303030;
 }
 .page-title,
