@@ -10,7 +10,7 @@ relative_permalinks: false
 title:            Towards Computer Vision
 tagline:          'A friendly programming blog'
 description:      'Sharing ideas, learning and discussing computer vision algorithms'
-url:              https://github.com/AbdelrhmanBassiouny
+url:              https://abdelrhmanbassiouny.github.io
 baseurl:          /
 
 author:
