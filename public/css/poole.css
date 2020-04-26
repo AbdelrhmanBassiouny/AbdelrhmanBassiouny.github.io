@@ -337,6 +337,7 @@ tbody tr:nth-child(odd) th {
 .page-title,
 .post-title,
 .post-title a {
+  font-size: 75%;
   color: #303030;
 }
 .page-title,
