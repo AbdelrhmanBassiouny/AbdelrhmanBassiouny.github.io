@@ -335,6 +335,9 @@ tbody tr:nth-child(odd) th {
 }
 
 /* Blog post or page title */
+.page-title a {
+  font-size: 50%
+}
 .page-title,
 .post-title,
 .post-title a {
