@@ -11,6 +11,8 @@ The goal behind this post is not just for showing the FFT algorithm implementati
 
 If you are unfamiliar yet with the Fourier Transform I highly recommend [this video by 3Blue1Brown](https://www.youtube.com/watch?v=spUNpyF58BY&list=PLKYWqKMe8hVIK-UgIO15KpMlcGz36aNN3&index=38&t=908s) 
 
+OK! Lets start by first having a look at the equation we are going to code.
+
 **Discrete Fourier Transform (DFT):**
 
 $$F_k = \sum_{n=0}^{N-1} g_n \cdot e^{-i~2\pi~k~n~/~N}~~~: k=[0, N-1] $$
