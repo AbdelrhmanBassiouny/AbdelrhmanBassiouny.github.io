@@ -17,7 +17,7 @@ OK! Lets start by first having a look at the equation we are going to code.
 
 $$F_k = \sum_{n=0}^{N-1} g_n \cdot e^{-i~2\pi~k~n~/~N}~~~: k=[0, N-1] $$
 
-This takes a discrete function $$G[n]$$ with size $$N$$, and produces a set of frequency magnitudes $$F[k]$$ for the frequencies that are available in the discrete function, these frequencies are described by $$\frac{k}{N}$$ where $$k$$ is an integer that belongs to the interval $$[0, N-1]$$
+We notice that this equation takes  as input a discrete function $$G[n]$$ with size $$N$$, and produces a set of frequency magnitudes $$F[k]$$ for the frequencies that are available in the discrete function, these frequencies are described by $$\frac{k}{N}$$ which is in the exponent term, where $$k$$ is an integer that belongs to the interval $$[0, N-1]$$
 
 The approach one normally takes when implementing any algorithm would be to first make a naive brute force solution for the problem and see that everything works as expected, and then try to find some optimizations to improve the algorithm's efficiency.
 
