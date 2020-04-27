@@ -1,3 +1,7 @@
+---
+layout: post
+title: FFT Intuition & Python Implementations
+---
 ## FFT Intuition & Python Implementations: 
 
 The goal behind this notebook is not just for showing an algorithm implementation, but to go through the process of trying to implement an efficient algorithm to calculate the discrete fourier transfom, and see how a good algorithmic thinking process with a bit of analysis and observation would naturally lead to the fft algoritm.
