@@ -175,7 +175,7 @@ for k in range(n_samples):
 ```
 
 
-![](https://github.com/AbdelrhmanBassiouny/AbdelrhmanBassiouny.github.io/blob/master/assets/images/fft/output_18_0.png)
+![](/assets/images/fft/output_18_0.png)
 
 
 Having a fast look, Tells us there's certainly some similarity between the values of $$k$$, but we need to point down what that similarity really is.
@@ -426,7 +426,7 @@ np.allclose(fft(x), np.fft.fft(x))
 
 There's a $${10}$$ fold improvement from before, but we are still $$10^{3}$$ times slower than numpy, and this is mainly because of vectorization, we can vectorize this solution and that's it, but we have now an algorithm that is $$\mathcal{O}[N\log{N}]$$, because we have $$\log{N}$$ recursion levels (because we can split $$\log{N}$$ times) and we do $$N$$ work at each level.
 
-To vectorize this recursive algorithm, it's useful to look at the recursion tree ![](assets/images/fft/fft_recursion_tree.png)
+To vectorize this recursive algorithm, it's useful to look at the recursion tree ![](/assets/images/fft/fft_recursion_tree.png)
 
 [Image Source](https://people.eecs.berkeley.edu/~demmel/cs170_spr07/LectureNotes/Lecture_FFT.pdf)
 
