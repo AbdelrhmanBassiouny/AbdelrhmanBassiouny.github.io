@@ -330,7 +330,7 @@ $$F_{k,~even} = \sum_{n=0}^{\frac{N}{2}-1} g_{2n}\cdot e^{-i~2\pi~k~n~/~(N/2)}$$
 
 $$F_{k,~odd} = \sum_{n=0}^{\frac{N}{2}-1} g_{2n+1}\cdot e^{-i~2\pi~k~n~/~(N/2)}$$
 
-But is it really half the size? I mean yes we compute half the samples for each but we still compute $$N$$ number of frequencies? no, actually if you remember **key idea 1** that we discussed, we said that the number of possible different frequencies are equal to the number of samples in the signal, and for the even/odd parts we they have half the number of samples so we only need to compute half the number of frequencies for each of them **(Therefore same problem but half it's size)**.
+But is it really half the size? I mean yes we compute half the samples for each, but not every thing of the original problem size is halved, since we still compute $$N$$ number of frequencies right? Actually, No, if you remember **key idea 1** that we discussed, we said that the number of possible different frequencies are equal to the number of samples in the signal, and each of the even/odd parts have half the number of samples so we only need to compute half the number of frequencies for each of them **(Therefore same problem but half it's size)**.
 
 If you have taken any algorithms course or have experience with them in anyway, what I have just said should instantly click in your mind that this is the same as any divide and conquer problem, you start with a big problem, then you split it into to smaller problems of the same type and you keep going until tou can't split any more, the only difference is that we split it into even and odd parts instead of splitting an array from the middle.
 
