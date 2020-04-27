@@ -314,7 +314,7 @@ There's a constant part that doesn't depend on $$n$$ in the complex term of $$F_
 
 $$F_{k,~2n+1} = e^{-i~2\pi~k~/~N} \sum_{n=0}^{\frac{N}{2}-1} g_{2n+1}\cdot e^{-i~2\pi~k~(2n)~/~N}$$
 
-lets call this term $$c_k$$ since it depends on $$k$$, and rename $$F_{k,~2n}$ to $$F_{k,~even}$$ and $$F_{k,~2n+1}$$ to $$c_k F_{k,~odd}$$ because it's much easier to read:
+lets call this term $$c_k$$ since it depends on $$k$$, and rename $$F_{k,~2n}$$ to $$F_{k,~even}$$ and $$F_{k,~2n+1}$$ to $$c_k F_{k,~odd}$$ because it's much easier to read:
 
 $$F_{k,~2n+1} = c_k \sum_{n=0}^{\frac{N}{2}-1} g_{2n+1}\cdot e^{-i~2\pi~k~(2n)~/~N} = c_k F_{k,~odd}$$
 
