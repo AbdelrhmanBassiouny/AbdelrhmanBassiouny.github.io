@@ -13,6 +13,7 @@ Trying to understand this on my own while scworing the internet for clues and id
 If you are unfamiliar yet with the Fourier Transform I highly recommend [this video by 3Blue1Brown](https://www.youtube.com/watch?v=spUNpyF58BY&list=PLKYWqKMe8hVIK-UgIO15KpMlcGz36aNN3&index=38&t=908s) 
 
 **Discrete Fourier Transform (DFT):**
+
 $$F_k = \sum_{n=0}^{N-1} g_n \cdot e^{-i~2\pi~k~n~/~N}~~~: k=[0, N-1] $$
 
 This takes a discrete function ![G\[n\]](https://render.githubusercontent.com/render/math?math=G%5Bn%5D) with size $N$, and produces a set of frequency magnitudes $F[k]$ for the frequencies that are available in the discrete function, these frequencies are described by <img src="https://render.githubusercontent.com/render/math?math=\displaystyle\frac{k}{N}"> where $k$ is an integer that belongs to the interval $[0, N-1]$
