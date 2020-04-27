@@ -79,7 +79,8 @@ def vectorized_naive_ft(g):
     # vector containing values of k, with size (Nx1)
     k = np.arange(sz).reshape((sz, 1))
     n = k
-    e = np.exp(-2j * np.pi * k.dot(n.T) / sz) # The complex term, an NxN Matrix
+    # The complex term, an NxN Matrix.
+    e = np.exp(-2j * np.pi * k.dot(n.T) / sz)
     return e.dot(g)
 ```
 
@@ -358,8 +359,10 @@ def recursive_fft(g):
     f_even = recursive_fft(g[::2])  # even samples of g.
     f_odd = recursive_fft(g[1::2])  # odd samples of g.
     
+    # Calculate c_k for the first half frequencies.
     k = np.arange(sz // 2)
     ck = np.exp(-2j * np.pi * k / sz)
+    
     # Make use of the symmetry to calculate the other half.
     return np.hstack([f_even + ck * f_odd,
                      f_even - ck * f_odd])
@@ -421,15 +424,16 @@ def vectorized_fft(g):
     # instead of recursively moving through the level pairs/dfts.
     # while also making use of the symmetry of the dft as before.
     while f.shape[0] < sz:
-        # number of frequencies at this level = 2 * size of previous level.
+        # number of frequencies at this level = 2 * previous level.
         n = 2 * f.shape[0]
         
         # Get even and odd pairs of recursion tree at this level.
-        f_even = f[:, : f.shape[1] // 2] # first half is the even pairs
-        f_odd = f[:, f.shape[1] // 2:] # second half is the odd pairs
+        f_even = f[:, : f.shape[1] // 2]
+        f_odd = f[:, f.shape[1] // 2:]
         
-        # calculate the complex term for the first half frequencies
-        c_k = np.exp(-2j * np.pi * np.arange(n // 2) / n).reshape(n // 2, 1)
+        # calculate c_k for the first half frequencies
+        k = np.arange(n // 2)
+        c_k = np.exp(-2j * np.pi * k / n).reshape(n // 2, 1)
         
         # And here we make use of the symmetry to calculate 2nd half.
         f = np.vstack([f_even + c_k * f_odd,
