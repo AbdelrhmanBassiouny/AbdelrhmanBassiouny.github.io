@@ -468,7 +468,7 @@ np.allclose(vectorized_fft(x), np.fft.fft(x))
     31.5 µs ± 129 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)
 
 
-Great! We are about $$10^{2}$$ times faster than noraml recursive fft, and we are only about $$10$$ times slower than the numpy implementation, this is because numpy's implementation is done using highly efficient low level implementation, but overal it's similar to this algorithm, congratulations! you have just a very good level of understanding for fft, and dft, and I also hope this helped you enhance your algorithmic thinking process.
+Great! We are about $$10^{2}$$ times faster than normal recursive fft, and we are only about $$10$$ times slower than the numpy implementation, this is because numpy's implementation is done using highly efficient low level implementation, but overall it's similar to this algorithm, congratulations! you have just reached a very good level of understanding for fft, and dft, and I also hope that going through this process of algorithm optimization has helped you enhance your algorithmic skills.
 
 **Resourses & Refrences:**
 
