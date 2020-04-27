@@ -152,7 +152,7 @@ Having a fast look, Tells us there's certainly some similarity between the value
 
 Looking at $$k=0$$ and $$k=4$$, I can't figure out how to relate them, but i can see that $$k=0$$ has only one value which is $$1$$, while $$k=4$$ has only two values either $$1$$ or $$-1$$.
 
-I move on to $$k=1$$ and $$k=5$$ because they certainly look similar, and I notice that for $$n=0, 2, 4, 6$$ (which are all even values) the complex term at $$k=1$$ equals that at $$k=5$$, while for $$n=1, 3, 5, 7$$ (which are all even values) the complex term at $$k=1$$ equals negative that at $$k=5$$. This also maybe true for $$k=3, 7$$, $$k=0, 4$$ and $$k=2, 6$$ but i can't say for sure because the values of $$n$$ overlab each other.
+I move on to $$k=1$$ and $$k=5$$ because they certainly look similar, and I notice that for $$n=0, 2, 4, 6$$ (which are all even values) the complex term at $$k=1$$ equals that at $$k=5$$, while for $$n=1, 3, 5, 7$$ (which are all odd values) the complex term at $$k=1$$ equals negative that at $$k=5$$. This also maybe true for $$k=3, 7$$, $$k=0, 4$$ and $$k=2, 6$$ but i can't say for sure because the values of $$n$$ overlab each other.
 
 OK! this seems interesting, we could say that for even values of $$n$$ the **complex term at $$k =$$ complex term at $$\frac{N}{2} + k$$**, while for odd values of $$n$$ the **complex term at $$k =$$ negative complex term at $$\frac{N}{2} + k$$**
 
