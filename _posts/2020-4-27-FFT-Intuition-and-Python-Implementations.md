@@ -20,7 +20,7 @@ This takes a discrete function $$G[n]$$ with size $$N$$, and produces a set of f
 
 The approach one normally takes when implementing any algorithm would be to first make a naive brute force solution for the problem and see that everything works as expected, and then try to find some optimizations to improve the algorithm's efficiency.
 
-A brute force algorithm for the DFT equation would have two nested for loobs, an outer loob going through values of $k$, and an inner loob for the values of $n$ while adding the calculated terms as we go. This yields an algorithm with $$\mathcal{O}[N^2]$$ complexity.
+A brute force algorithm for the DFT equation would have two nested for loobs, an outer loob going through values of $$k$$, and an inner loob for the values of $$n$$ while adding the calculated terms as we go. This yields an algorithm with $$\mathcal{O}[N^2]$$ complexity.
 OK! lets do it and see its performance against the numpy implementation which uses a highly optimized version of the Fast Fourier Transform algorithm which has $$\mathcal{O}[N\log N]$$ complexity.
 
 
@@ -66,7 +66,7 @@ np.allclose(naive_ft(x), np.fft.fft(x))
 
 Good! Our algorithm works, but $$10^{5}$$ times slower than the numpy implementation, That's Bad! But no worry we will certainly do better.
 
-The first idea that comes to my mind when I see a sum of products $$\sum_{n=0}^{N-1} a_n \cdot b_n$$ is the Dot Product between vectors, which is computed very efficiently using numpy. Thus if we make a vector $A$ with all values of $$a_n$$ and a vector $$B$$ with all values of $b_n$, the sum of products for all $N$ becomes $$A\cdot B$$. But that gets rid of the inner for loob, how about the outer one that goes over the $k$ values? Well turns out we can get rid of it as well if we make the complex term of the DFT a matrix of size $$[N*N]$$ where rows represent different $$k$$ values and columns represent different $$n$$ values. 
+The first idea that comes to my mind when I see a sum of products $$\sum_{n=0}^{N-1} a_n \cdot b_n$$ is the Dot Product between vectors, which is computed very efficiently using numpy. Thus if we make a vector $$A$$ with all values of $$a_n$$ and a vector $$B$$ with all values of $$b_n$$, the sum of products for all $$N$$ becomes $$A\cdot B$$. But that gets rid of the inner for loob, how about the outer one that goes over the $$k$$ values? Well turns out we can get rid of it as well if we make the complex term of the DFT a matrix of size $$[N*N]$$ where rows represent different $$k$$ values and columns represent different $$n$$ values. 
 
 OK! lets vectorize this operation and get rid of those for loobs.
 
@@ -182,17 +182,17 @@ Having a fast look, Tells us there's certainly some similarity between the value
 
 Looking at $$k=0$$ and $$k=4$$, I can't figure out how to relate them, but i can see that $$k=0$$ has only one value which is $$1$$, while $$k=4$$ has only two values either $$1$$ or $$-1$$.
 
-I move on to $k=1$ and $k=5$ because they certainly look similar, well for $$n=0, 2, 4, 6$$ the complex term at $$k=1$$ equals that at $$k=5$$, while for $$n=1, 3, 5, 7$$ the complex term at $$k=1$$ equals negative that at $$k=5$$. This maybe true also for $$k=3, 7$$, $$k=0, 4$$ and $$k=2, 6$$ but i can't say for sure because the values of $$n$$ overlab each other.
+I move on to $$k=1$$ and $$k=5$$ because they certainly look similar, well for $$n=0, 2, 4, 6$$ the complex term at $$k=1$$ equals that at $$k=5$$, while for $$n=1, 3, 5, 7$$ the complex term at $$k=1$$ equals negative that at $$k=5$$. This maybe true also for $$k=3, 7$$, $$k=0, 4$$ and $$k=2, 6$$ but i can't say for sure because the values of $$n$$ overlab each other.
 
-OK! this seems interesting, we could say that for even values of $n$ the **complex term at $$k =$$ complex term at $$\frac{N}{2} + k$$**, while for odd values of $n$ the **complex term at $$k =$$ negative complex term at $$\frac{N}{2} + k$$**
+OK! this seems interesting, we could say that for even values of $$n$$ the **complex term at $$k =$$ complex term at $$\frac{N}{2} + k$$**, while for odd values of $$n$$ the **complex term at $$k =$$ negative complex term at $$\frac{N}{2} + k$$**
 
 But this isn't hard proof, this is just an observation, so to prove it we really have to go to algebra and see if we can obtain the same results.
 
-**Discrete Fourier Transform (DFT) at $k=k$:**
+**Discrete Fourier Transform (DFT) at $$k=k$$:**
 
 $$F_k = \sum_{n=0}^{N-1} g_n \cdot e^{-i~2\pi~k~n~/~N}~~~: k=[0, N-1] $$
 
-**Discrete Fourier Transform (DFT) at $k=\frac{N}{2}+k$:**
+**Discrete Fourier Transform (DFT) at $$k=\frac{N}{2}+k$$:**
 
 $$~~~~~~~~~~~~~~~F_{(\frac{N}{2}+k)} = \sum_{n=0}^{N-1} g_n \cdot e^{-i~2\pi~(\frac{N}{2}+k)~n~/~N}~~~: k=[0, \frac{N}{2}-1] $$
 
@@ -266,7 +266,7 @@ $$F_{(\frac{N}{2}+k),~n=2n+1} = -F_{k,~n=2n+1}~~~~: k=[0, \frac{N}{2}-1] $$
 
 Aha!, we have found a great optimization that allows to compute only half the values of $$k$$ which are in the interval $$[0, \frac{N}{2}-1]$$ and then simply derive other half of the interval from what we have calculated in the first half, **But don't get confused we are still calculating $$N$$ number of frequencies, what we do is we compute the first half in a slow way and the second half of the interval in a faster way**.
 
-It would be convenient to **split the big summation of $$F_k$$ into two smaller summations**, one for even values of $$n$$ that we call $$F_{k,~2n}$$, and one for odd values of $n$ that we call $$F_{k,~2n+1}$$, because we will use them in the calculation of the other half interval of $$k$$ ( i.e in the calculation of $$F_{(\frac{N}{2}+k)}$$ ).
+It would be convenient to **split the big summation of $$F_k$$ into two smaller summations**, one for even values of $$n$$ that we call $$F_{k,~2n}$$, and one for odd values of $$n$$ that we call $$F_{k,~2n+1}$$, because we will use them in the calculation of the other half interval of $$k$$ ( i.e in the calculation of $$F_{(\frac{N}{2}+k)}$$ ).
 
 The first $$N/2$$ number of frequencies $$[0, N/2]$$ are calculated using this equation:
 
@@ -341,7 +341,7 @@ There's a constant part that doesn't depend on $$n$$ in the complex term of $$F_
 
 $$F_{k,~2n+1} = e^{-i~2\pi~k~/~N} \sum_{n=0}^{\frac{N}{2}-1} g_{2n+1}\cdot e^{-i~2\pi~k~(2n)~/~N}$$
 
-lets call this term $$c_k$$ since it depends on $$k$$, and rename $$F_{k,~2n}$ to $F_{k,~even}$$ and $$F_{k,~2n+1}$$ to $$c_k F_{k,~odd}$$ because it's much easier to read:
+lets call this term $$c_k$$ since it depends on $$k$$, and rename $$F_{k,~2n}$ to $$F_{k,~even}$$ and $$F_{k,~2n+1}$$ to $$c_k F_{k,~odd}$$ because it's much easier to read:
 
 $$F_{k,~2n+1} = c_k \sum_{n=0}^{\frac{N}{2}-1} g_{2n+1}\cdot e^{-i~2\pi~k~(2n)~/~N} = c_k F_{k,~odd}$$
 
