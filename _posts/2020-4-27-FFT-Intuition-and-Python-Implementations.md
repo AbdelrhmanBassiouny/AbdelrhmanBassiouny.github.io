@@ -2,7 +2,8 @@
 layout: post
 title: FFT Intuition & Python Implementations
 ---
-## FFT Intuition & Python Implementations: 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
 
 The goal behind this notebook is not just for showing an algorithm implementation, but to go through the process of trying to implement an efficient algorithm to calculate the discrete fourier transfom, and see how a good algorithmic thinking process with a bit of analysis and observation would naturally lead to the fft algoritm.
 
