@@ -15,7 +15,7 @@ If you are unfamiliar yet with the Fourier Transform I highly recommend [this vi
 **Discrete Fourier Transform (DFT):**
 $$F_k = \sum_{n=0}^{N-1} g_n \cdot e^{-i~2\pi~k~n~/~N}~~~: k=[0, N-1] $$
 
-This takes a discrete function <img src="https://render.githubusercontent.com/render/math?math=G[n]"> with size $N$, and produces a set of frequency magnitudes $F[k]$ for the frequencies that are available in the discrete function, these frequencies are described by ${\displaystyle \frac{k}{N}}$ where $k$ is an integer that belongs to the interval $[0, N-1]$
+This takes a discrete function <img src="https://render.githubusercontent.com/render/math?math=G[n]"> with size $N$, and produces a set of frequency magnitudes $F[k]$ for the frequencies that are available in the discrete function, these frequencies are described by <img src="https://render.githubusercontent.com/render/math?math=\displaystyle\frac{k}{N}"> where $k$ is an integer that belongs to the interval $[0, N-1]$
 
 The approach one normally takes when implementing any algorithm would be to first make a naive brute force solution for the problem and see that everything works as expected, and then try to find some optimizations to improve the algorithm's efficiency.
 
