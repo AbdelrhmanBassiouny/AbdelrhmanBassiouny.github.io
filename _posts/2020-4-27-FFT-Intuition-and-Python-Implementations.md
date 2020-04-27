@@ -74,11 +74,12 @@ OK! lets vectorize this operation and get rid of those for loobs.
 
 ```python
 def vectorized_naive_ft(g):
-    sz = g.shape[0]  # The discrete function G[n], an (Nx1) vector
-    k = np.arange(sz).reshape((sz, 1))  # vector containing values of k, with size (Nx1)
-    n = k  # The n values are the same as k.
-    power_mat = k.dot(n.T)  # an NxN matrix containing all the possible power of the complex term.
-    e = np.exp(-2j * np.pi * power_mat / sz) # The complex term, an NxN Matrix
+    # The discrete function G[n], an (Nx1) vector
+    sz = g.shape[0]
+    # vector containing values of k, with size (Nx1)
+    k = np.arange(sz).reshape((sz, 1))
+    n = k
+    e = np.exp(-2j * np.pi * k.dot(n.T) / sz) # The complex term, an NxN Matrix
     return e.dot(g)
 ```
 
@@ -142,39 +143,6 @@ What's really interesting in the fourier transform equation is the complex term 
 $$e^{-i~2\pi~k~n~/~N}$$ 
 
 If you are a goemetry lover, thinking of complex numbers you think in 2-D, in other words you think of the complex plane, so it would definitely be interesting to visualize how this term behaves with different values of $$n$$ and $$k$$ in the complex plane.
-
-
-```python
-import matplotlib.pyplot as plt
-
-%matplotlib inline
-```
-
-
-```python
-n_samples = 2**3
-g = np.random.random(n_samples)
-K = np.arange(n_samples).reshape(n_samples, 1)
-N = K
-c_term = np.exp(-2j * np.pi * K.dot(N.T) / n_samples)
-f, ax = plt.subplots(2,n_samples//2,sharex='col',sharey='row', figsize=(20,10))
-i = j = 0
-for k in range(n_samples):
-    if k < n_samples//2:
-        j = k 
-        i = 0
-    else:
-        j = k - n_samples//2
-        i = 1
-    for n in range(n_samples):
-        x = np.real(c_term[k][n])
-        y = np.imag(c_term[k][n])
-        ax[i][j].scatter(x, y, label='n={}'.format(n))
-    ax[i][j].grid()
-    ax[i][j].legend()
-    ax[i][j].set_title("k = {}".format(k))
-```
-
 
 ![](/assets/images/fft/output_18_0.png)
 
@@ -286,30 +254,29 @@ Before we go any further lets test what we have reached so far and see that ever
 
 ```python
 def vectorized_not_so_naive_ft(g):
-    sz = g.shape[0]  # The discrete function G[n], an (Nx1) vector
+    sz = g.shape[0]
     
     if np.log2(sz) % 1 > 0:
         raise ValueError("must be a power of 2")
         
-    g_even = g[::2] # even indices of G[n] (i.e. G[2n]) an (N/2 x 1) vector
-    g_odd = g[1::2] # odd indices of G[n] (i.e. G[2n+1]) an (N/2 x 1) vector
+    g_even = g[::2] # even indices of G[n]
+    g_odd = g[1::2] # odd indices of G[n]
     
-    k = np.arange(sz//2).reshape((sz//2, 1))  # vector containing values of k[0,N/2 - 1], with size (N/2)x1
+    k = np.arange(sz//2).reshape((sz//2, 1))
     
-    n_even = np.arange(start=0,stop=sz,step=2).reshape((sz//2, 1)) # the even n values an (N/2 x 1) vector
-    n_odd = np.arange(start=1,stop=sz,step=2).reshape((sz//2, 1)) # the odd n values an (N/2 x 1) vector
+    n_even = np.arange(start=0,stop=sz,step=2).reshape((sz//2, 1))
+    n_odd = np.arange(start=1,stop=sz,step=2).reshape((sz//2, 1))
     
-    power_mat_even = k.dot(n_even.T)# an N/2xN/2 matrix containing all the possible power of the even complex term.
-    power_mat_odd = k.dot(n_odd.T) # same but for the odd
-    
-    e_even = np.exp(-2j * np.pi * power_mat_even / sz) # The complex term of the even part, an N/2xN/2 Matrix
-    e_odd = np.exp(-2j * np.pi * power_mat_odd / sz)# The complex term of the odd part, an N/2xN/2 Matrix
+    # The complex term of the even part, an N/2xN/2 Matrix
+    e_even = np.exp(-2j * np.pi * k.dot(n_even.T) / sz)
+    # The complex term of the odd part, an N/2xN/2 Matrix
+    e_odd = np.exp(-2j * np.pi * k.dot(n_odd.T) / sz)
     
     f_k_2n = e_even.dot(g_even) # F_k,2n
     f_k_2n_1 = e_odd.dot(g_odd) # F_k,2n+1
   
-    f_k = np.hstack([f_k_2n + f_k_2n_1, # the first half of the interval of k [0, N/2 -1]
-                     f_k_2n - f_k_2n_1])# the second half of the interval of k [N/2, N-1]
+    f_k = np.hstack([f_k_2n + f_k_2n_1, # the first half frequencies
+                     f_k_2n - f_k_2n_1])# the second half frequencies
     return f_k
 ```
 
@@ -383,17 +350,17 @@ what's left now is to implement it:
 def recursive_fft(g):
     sz = g.shape[0]
     if sz == 1:
-        # end of recursion condition (i.e. we can't split anymore, size of dft = 1 sample),
-        # and there's only one frequency, which is at k = 0, thus the complex term = 1.
+        # end of recursion condition (i.e. we can't split anymore)
+        # and there's only one frequency, which is at k = 0)
         return g[0]
         
-    # Calculate the first half part of the dft using recursion (i.e. the interval [0, sz // 2) ).
-    f_even = recursive_fft(g[::2])  # the 2n (i.e. even) samples of g.
-    f_odd = recursive_fft(g[1::2])  # the 2n+1 (i.e. odd) samples of g.
+    # Calculate the first half frequencies using recursion.
+    f_even = recursive_fft(g[::2])  # even samples of g.
+    f_odd = recursive_fft(g[1::2])  # odd samples of g.
     
     k = np.arange(sz // 2)
     ck = np.exp(-2j * np.pi * k / sz)
-    # Make use of the symmetry to calculate the other half part of the dft (i.e. the interval [sz // 2 , sz) ).
+    # Make use of the symmetry to calculate the other half.
     return np.hstack([f_even + ck * f_odd,
                      f_even - ck * f_odd])
 def fft(g):
@@ -449,18 +416,22 @@ def vectorized_fft(g):
     if np.log2(sz) % 1 > 0:
         raise ValueError("must be a power of 2")
 
-    # Now we just move level by level from bottom to top of the recursion tree.
-    # Calculating all the level at once, instead of recursively moving through the level pairs/dfts.
+    # Now we just move level by level in the recursion tree.
+    # Calculating all the level at once,
+    # instead of recursively moving through the level pairs/dfts.
     # while also making use of the symmetry of the dft as before.
     while f.shape[0] < sz:
-        # size of the dft at this level (i.e. number of samples / frequencies) = 2 * size of previous level.
+        # number of frequencies at this level = 2 * size of previous level.
         n = 2 * f.shape[0]
-        # Get all the even and the odd pairs of the recursion tree at this level.
+        
+        # Get even and odd pairs of recursion tree at this level.
         f_even = f[:, : f.shape[1] // 2] # first half is the even pairs
         f_odd = f[:, f.shape[1] // 2:] # second half is the odd pairs
-        # calculate the complex term for the first half part of the dft (i.e. interval=[0, n // 2) ).
+        
+        # calculate the complex term for the first half frequencies
         c_k = np.exp(-2j * np.pi * np.arange(n // 2) / n).reshape(n // 2, 1)
-        # And here we make use of the symmetry of the dft, and calculate 2nd half from 1st half even and odd terms.
+        
+        # And here we make use of the symmetry to calculate 2nd half.
         f = np.vstack([f_even + c_k * f_odd,
                        f_even - c_k * f_odd])
     return f.ravel()
