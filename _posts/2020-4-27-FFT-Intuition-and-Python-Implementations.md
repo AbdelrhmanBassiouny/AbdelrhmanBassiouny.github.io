@@ -5,11 +5,9 @@ title: FFT Intuition & Python Implementations
 ---
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 
-The Fast Fourier Transform is a revolutionary algorithm to calculate teh Discrete Fourier Transform on discrete signals. The success and importance of the FFT algorithm isn't just because of the algorithm's idea, but mainly due to the great many applications in which it's used. So like you, it definitely got my attention as a programmer and as a computer vision enthusiast to try and implement this myself. 
+The Fast Fourier Transform is a revolutionary algorithm that calculates the Discrete Fourier Transform equation on discrete signals. The success and importance of the FFT algorithm isn't just because of the algorithm's idea, but mainly due to the great many applications in which it's used. So like you, it definitely got my attention as a programmer and as a computer vision enthusiast to try and implement this myself. 
 
 The goal behind this post is not just for showing the FFT algorithm implementation, but to go through the process of trying to implement an efficient algorithm to calculate the discrete fourier transfom, and see how a good algorithmic thinking process with a bit of analysis and observation would naturally lead to the FFT algoritm.
-
-Trying to understand this on my own while scworing the internet for clues and ideas has helped me alot and has definitley enhanced my algorithmic thinking, and I hope it does for you as well, lets dig in!
 
 If you are unfamiliar yet with the Fourier Transform I highly recommend [this video by 3Blue1Brown](https://www.youtube.com/watch?v=spUNpyF58BY&list=PLKYWqKMe8hVIK-UgIO15KpMlcGz36aNN3&index=38&t=908s) 
 
