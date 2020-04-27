@@ -175,7 +175,7 @@ for k in range(n_samples):
 ```
 
 
-![](assets/images/fft/output_18_0.png)
+![](./assets/images/fft/output_18_0.png)
 
 
 Having a fast look, Tells us there's certainly some similarity between the values of $$k$$, but we need to point down what that similarity really is.
