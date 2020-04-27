@@ -332,11 +332,11 @@ $$F_{k,~odd} = \sum_{n=0}^{\frac{N}{2}-1} g_{2n+1}\cdot e^{-i~2\pi~k~n~/~(N/2)}$
 
 But is it really half the size? I mean yes we compute half the samples for each, but not every thing of the original problem size is halved, since we still compute $$N$$ number of frequencies right? Actually, No, if you remember **key idea 1** that we discussed, we said that the number of possible different frequencies are equal to the number of samples in the signal, and each of the even/odd parts have half the number of samples so we only need to compute half the number of frequencies for each of them **(Therefore same problem but half it's size)**.
 
-If you have taken any algorithms course or have experience with them in anyway, what I have just said should instantly click in your mind that this is the same as any divide and conquer problem, you start with a big problem, then you split it into to smaller problems of the same type and you keep going until tou can't split any more, the only difference is that we split it into even and odd parts instead of splitting an array from the middle.
+If you have taken any algorithms course or have experience with them in anyway, what I have just said should instantly click in your mind that this is the same as any divide and conquer problem, you start with a big problem, then you split it into smaller problems of the same type and you keep going until you can't split any more, the only difference is that we split it into even and odd parts instead of splitting an array from the middle.
 
-What we have done so far was only split the problem once into an even and odd part to make use of the symmetry we have found and only calculate half the values of $$k$$ while other half we easily get from the calculated even and odd parts.
+What we have done so far was only o split the problem once into an even and odd part to make use of the symmetry we have found and only calculate half the values of $$k$$ slowly while the other half we easily get from the calculated even and odd parts.
 
-So what we should do now is split $$F_{k,~even}$$ and $$F_{k,~odd}$$ into another even and odd parts for each one and, and keep doing that until there's only one sample left in each of the last even and odd parts. Finally we compine each even and odd pairs from the bottom (1 sample) to the top (N samples) while making use of the symmetry at each level.
+So what we should do now is split $$F_{k,~even}$$ and $$F_{k,~odd}$$ into another even and odd parts for each one and, and keep doing that until there's only one sample left in each of the last even and odd parts. Finally we compine each even and odd pairs from the bottom to the top while making use of the symmetry at each step.
 
 **A simple explanantion for how this should be much faster is this:**
 
