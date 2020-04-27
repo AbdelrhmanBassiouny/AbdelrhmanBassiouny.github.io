@@ -152,7 +152,7 @@ Having a fast look, Tells us there's certainly some similarity between the value
 
 Looking at $$k=0$$ and $$k=4$$, I can't figure out how to relate them, but i can see that $$k=0$$ has only one value which is $$1$$, while $$k=4$$ has only two values either $$1$$ or $$-1$$.
 
-I move on to $$k=1$$ and $$k=5$$ because they certainly look similar, well for $$n=0, 2, 4, 6$$ the complex term at $$k=1$$ equals that at $$k=5$$, while for $$n=1, 3, 5, 7$$ the complex term at $$k=1$$ equals negative that at $$k=5$$. This maybe true also for $$k=3, 7$$, $$k=0, 4$$ and $$k=2, 6$$ but i can't say for sure because the values of $$n$$ overlab each other.
+I move on to $$k=1$$ and $$k=5$$ because they certainly look similar, and I notice that for $$n=0, 2, 4, 6$$ (which are all even values) the complex term at $$k=1$$ equals that at $$k=5$$, while for $$n=1, 3, 5, 7$$ (which are all even values) the complex term at $$k=1$$ equals negative that at $$k=5$$. This also maybe true for $$k=3, 7$$, $$k=0, 4$$ and $$k=2, 6$$ but i can't say for sure because the values of $$n$$ overlab each other.
 
 OK! this seems interesting, we could say that for even values of $$n$$ the **complex term at $$k =$$ complex term at $$\frac{N}{2} + k$$**, while for odd values of $$n$$ the **complex term at $$k =$$ negative complex term at $$\frac{N}{2} + k$$**
 
@@ -170,7 +170,7 @@ $$= \sum_{n=0}^{N-1} g_n \cdot e^{-i\pi~n}\cdot e^{-i~2\pi~k~n~/~N}$$
 
 Hmm! We find that this term $$e^{-i\pi~n}$$ which is a function of $$n$$ only, is really what makes the difference between $$F_k$$ and $$F_{(\frac{N}{2}+k)}$$, but what does that evaluate to at different values of $$n$$ ?
 
-If we know complex numbers, then we know eulers formula which states:
+If we know complex numbers, then we know euler's formula which states:
 
 $$e^{i\theta} = \cos{\theta} + i\sin{\theta}$$
 
@@ -234,7 +234,7 @@ $$F_{(\frac{N}{2}+k),~n=2n+1} = -1 * \sum_{n=0}^{\frac{N}{2}-1} g_{2n+1}\cdot e^
 
 $$F_{(\frac{N}{2}+k),~n=2n+1} = -F_{k,~n=2n+1}~~~~: k=[0, \frac{N}{2}-1] $$
 
-Aha!, we have found a great optimization that allows to compute only half the values of $$k$$ which are in the interval $$[0, \frac{N}{2}-1]$$ and then simply derive other half of the interval from what we have calculated in the first half, **But don't get confused we are still calculating $$N$$ number of frequencies, what we do is we compute the first half in a slow way and the second half of the interval in a faster way**.
+Aha!, This really proves our observation, We have found a great optimization that allows us to compute only half the values of $$k$$ which are in the interval $$[0, \frac{N}{2}-1]$$ and then simply derive other half of the interval from what we have calculated in the first half, **But don't get confused we are still calculating $$N$$ number of frequencies, what we do is we compute the first half in a slow way and the second half of the interval in a faster way**.
 
 It would be convenient to **split the big summation of $$F_k$$ into two smaller summations**, one for even values of $$n$$ that we call $$F_{k,~2n}$$, and one for odd values of $$n$$ that we call $$F_{k,~2n+1}$$, because we will use them in the calculation of the other half interval of $$k$$ ( i.e in the calculation of $$F_{(\frac{N}{2}+k)}$$ ).
 
