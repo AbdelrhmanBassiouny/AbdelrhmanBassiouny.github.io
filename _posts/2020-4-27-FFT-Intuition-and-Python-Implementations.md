@@ -238,6 +238,8 @@ Aha! This really proves our observation, We have found a great optimization that
 
 It would be convenient to **split the big summation of $$F_k$$ into two smaller summations**, one for even values of $$n$$ that we call $$F_{k,~2n}$$, and one for odd values of $$n$$ that we call $$F_{k,~2n+1}$$, because we will use them in the calculation of the other half interval of $$k$$ ( i.e in the calculation of $$F_{(\frac{N}{2}+k)}$$ ).
 
+**So to wrap things up:**
+
 The first $$N/2$$ number of frequencies $$[0, N/2]$$ are calculated using this equation:
 
 $$F_k = F_{k,~2n} + F_{k,~2n+1}$$
@@ -245,6 +247,8 @@ $$F_k = F_{k,~2n} + F_{k,~2n+1}$$
 The second $$N/2$$ number of frequencies $$[N/2, N-1]$$ are calculated using this equation:
 
 $$F_{(\frac{N}{2}+k)} = F_{k,~2n} - F_{k,~2n+1}$$
+
+where:
 
 $$F_{k,~2n} = \sum_{n=0}^{\frac{N}{2}-1} g_{2n}\cdot e^{-i~2\pi~k~(2n)~/~N}$$
 
