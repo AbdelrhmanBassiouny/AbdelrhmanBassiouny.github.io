@@ -322,7 +322,7 @@ $$F_{k,~2n} = \sum_{n=0}^{\frac{N}{2}-1} g_{2n}\cdot e^{-i~2\pi~k~(2n)~/~N} = F_
 
 $$F_k = F_{k,~even} + c_k F_{k,~odd}$$
 
-Now we see that the complex term is the same for $$F_{k,~even}$$ and $$F_{k,~odd}$$ now the only difference between them is that one takes the even half of the samples, and the other takes the odd half of samples (also the odd part gets multiplied by $$c_k$$ when calculating $$F_k$$ ).
+Now we see that the complex term is the same for $$F_{k,~even}$$ and $$F_{k,~odd}$$, and the only difference between them is that one of them takes the even half of the samples, and the other takes the odd half of samples (also the odd part gets multiplied by $$c_k$$ when calculating $$F_k$$ ).
 
 Moreover each of $$F_{k,~even}$$ and $$F_{k,~odd}$$ are actually replicas of the original problem $$F_k$$ but with half the samples, This is more evident when we rewrite $$F_{k,~even}$$ and $$F_{k,~odd}$$ such that the $$(\frac{2n}{N})$$ part in the complex term becomes $$(\frac{n}{N/2})$$.
 
