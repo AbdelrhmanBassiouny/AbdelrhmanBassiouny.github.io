@@ -234,7 +234,7 @@ $$F_{(\frac{N}{2}+k),~n=2n+1} = -1 * \sum_{n=0}^{\frac{N}{2}-1} g_{2n+1}\cdot e^
 
 $$F_{(\frac{N}{2}+k),~n=2n+1} = -F_{k,~n=2n+1}~~~~: k=[0, \frac{N}{2}-1] $$
 
-Aha!, This really proves our observation, We have found a great optimization that allows us to compute only half the values of $$k$$ which are in the interval $$[0, \frac{N}{2}-1]$$ and then simply derive other half of the interval from what we have calculated in the first half, **But don't get confused we are still calculating $$N$$ number of frequencies, what we do is we compute the first half in a slow way and the second half of the interval in a faster way**.
+Aha! This really proves our observation, We have found a great optimization that allows us to compute only half the values of $$k$$ which are in the interval $$[0, \frac{N}{2}-1]$$ and then simply derive other half of the interval from what we have calculated in the first half, **But don't get confused we are still calculating $$N$$ number of frequencies, what we do is we compute the first half in a slow way and the second half of the interval in a faster way**.
 
 It would be convenient to **split the big summation of $$F_k$$ into two smaller summations**, one for even values of $$n$$ that we call $$F_{k,~2n}$$, and one for odd values of $$n$$ that we call $$F_{k,~2n+1}$$, because we will use them in the calculation of the other half interval of $$k$$ ( i.e in the calculation of $$F_{(\frac{N}{2}+k)}$$ ).
 
