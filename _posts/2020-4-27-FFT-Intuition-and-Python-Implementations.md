@@ -21,7 +21,7 @@ We notice that this equation takes  as input a discrete function $$G[n]$$ with s
 
 The approach one normally takes when implementing any algorithm would be to first make a naive brute force solution for the problem and see that everything works as expected, and then try to find some optimizations to improve the algorithm's efficiency.
 
-We see that there is two variables in the equation $$k$$ and $$n$$, So a brute force algorithm for the DFT equation would have two nested for loobs, an outer loob going through values of $$k$$, and an inner loob for the values of $$n$$ while adding the calculated terms as we go. This yields an algorithm with $$\mathcal{O}[N^2]$$ complexity.
+We see that there is two variables in the equation $$k$$ and $$n$$, So a brute force algorithm for the DFT equation would have two nested for loops, an outer loop going through values of $$k$$, and an inner loop for the values of $$n$$ while adding the calculated terms as we go. This yields an algorithm with $$\mathcal{O}[N^2]$$ complexity.
 OK! lets do it and see its performance against the numpy implementation which uses a highly optimized version of the Fast Fourier Transform algorithm which has $$\mathcal{O}[N\log N]$$ complexity.
 
 
